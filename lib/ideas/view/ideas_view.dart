@@ -1,3 +1,4 @@
+import 'package:app_ideas/ideas/view/idea_card.dart';
 import 'package:flutter/material.dart';
 
 class IdeasView extends StatelessWidget {
@@ -5,6 +6,12 @@ class IdeasView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView.builder(
+      itemCount: 10,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return const IdeaCard();
+      },
+    );
   }
 }

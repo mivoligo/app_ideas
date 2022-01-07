@@ -5,6 +5,21 @@ class IdeaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SizedBox(
+      width: 100,
+      child: Card(
+        color: Colors.green,
+        child: Column(
+          children: const [
+            Expanded(
+              child: Placeholder(),
+            ),
+            Text('some text'),
+            Text('some text which is longer much'),
+            Text('some text'),
+          ],
+        ),
+      ),
+    );
   }
 }

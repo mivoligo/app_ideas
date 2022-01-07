@@ -1,3 +1,4 @@
+import 'package:app_ideas/ideas/ideas.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,6 +8,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
+      body: Column(
+        children: const [
+          Text('App Ideas'),
+          Expanded(child: IdeasView()),
+        ],
+      ),
     );
   }
 }
