@@ -1,8 +1,8 @@
-import 'package:app_ideas/ideas/view/idea_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/ideas_cubit.dart';
+import 'widgets/widgets.dart';
 
 class IdeasView extends StatelessWidget {
   const IdeasView({Key? key}) : super(key: key);
@@ -19,29 +19,17 @@ class IdeasView extends StatelessWidget {
           builder: (context, state) {
             switch (state.status) {
               case IdeasStatus.initial:
-                return const SliverFillRemaining();
+                return const IdeasInitial();
 
               case IdeasStatus.loading:
-                return const SliverFillRemaining(
-                    child: Center(child: CircularProgressIndicator()));
+                return const IdeasLoading();
 
               case IdeasStatus.success:
-                return SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final idea = state.ideas[index];
-                      return IdeaCard(
-                        title: idea.title,
-                        description: idea.description,
-                      );
-                    },
-                    childCount: state.ideas.length,
-                  ),
-                );
+                return IdeasPopulated(ideas: state.ideas);
 
               case IdeasStatus.failure:
-                return const SliverFillRemaining(
-                  child: Center(child: Text('Something went wrong')),
+                return IdeasError(
+                  onPressed: context.read<IdeasCubit>().fetchIdeas,
                 );
             }
           },

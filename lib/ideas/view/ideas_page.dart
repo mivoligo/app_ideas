@@ -22,8 +22,9 @@ class IdeasPage extends StatelessWidget {
           ),
         ),
         child: BlocProvider(
-          create: (context) =>
-              IdeasCubit(context.read<IdeasRepository>())..fetchIdeas(),
+          create: (context) => IdeasCubit(
+            context.read<IdeasRepository>(),
+          )..fetchIdeas(),
           child: const IdeasView(),
         ),
       ),
