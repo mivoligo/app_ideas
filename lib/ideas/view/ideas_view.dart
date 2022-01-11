@@ -14,7 +14,10 @@ class IdeasView extends StatelessWidget {
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
-            (context, index) => const IdeaCard(),
+            (context, index) => const IdeaCard(
+              title: 'App Idea',
+              description: 'Something about the app',
+            ),
             childCount: 20,
           ),
         ),

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class IdeaCard extends StatelessWidget {
-  const IdeaCard({Key? key}) : super(key: key);
+  const IdeaCard({
+    Key? key,
+    required this.title,
+    required this.description,
+    this.image,
+  }) : super(key: key);
+
+  final String title;
+  final String description;
+  final Image? image;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +31,11 @@ class IdeaCard extends StatelessWidget {
             SizedBox(
               width: 120,
               height: 120,
-              child: Image.asset(
-                'assets/images/terminal.jpg',
-                fit: BoxFit.cover,
-              ),
+              child: image ??
+                  Image.asset(
+                    'assets/images/terminal.jpg',
+                    fit: BoxFit.cover,
+                  ),
             ),
             Expanded(
               child: Padding(
@@ -37,7 +47,7 @@ class IdeaCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
-                        'Name of the app idea',
+                        title,
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge
@@ -45,7 +55,7 @@ class IdeaCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'some text which is longer much maybe even a bit longer',
+                      description,
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium
