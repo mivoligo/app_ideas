@@ -22,8 +22,8 @@ class IdeaCard extends StatelessWidget {
             SizedBox(
               width: 120,
               height: 120,
-              child: Image.network(
-                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+              child: Image.asset(
+                'assets/images/terminal.jpg',
                 fit: BoxFit.cover,
               ),
             ),
