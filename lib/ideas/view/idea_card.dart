@@ -6,35 +6,32 @@ class IdeaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 24.0,
+        vertical: 8.0,
+      ),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          gradient: const LinearGradient(
-            colors: [
-              Color(0xFF222935),
-              Color(0xFF0F151C),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0xFF434B65),
-              offset: Offset(0, -1),
-            )
-          ],
+          borderRadius: BorderRadius.circular(12.0),
+          color: const Color(0xFF212A35),
         ),
+        clipBehavior: Clip.antiAlias,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(width: 120, height: 120, child: Placeholder()),
+            SizedBox(
+              width: 120,
+              height: 120,
+              child: Image.network(
+                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                fit: BoxFit.cover,
+              ),
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
@@ -43,8 +40,8 @@ class IdeaCard extends StatelessWidget {
                         'Name of the app idea',
                         style: Theme.of(context)
                             .textTheme
-                            .headline5
-                            ?.copyWith(color: Colors.grey.shade300),
+                            .titleLarge
+                            ?.copyWith(color: const Color(0xFF949ED3)),
                       ),
                     ),
                     Text(
