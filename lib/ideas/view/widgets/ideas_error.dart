@@ -16,12 +16,13 @@ class IdeasError extends StatelessWidget {
               '🤔',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
+            const SizedBox(height: 24),
             Text(
               'Something went wrong',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium
-                  ?.copyWith(color: const Color(0xFF949ED3)),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    color: const Color(0xFF949ED3),
+                  ),
             ),
             const SizedBox(height: 24),
             ElevatedButton(
