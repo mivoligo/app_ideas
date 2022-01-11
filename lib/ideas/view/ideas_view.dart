@@ -1,5 +1,4 @@
 import 'package:app_ideas/ideas/view/idea_card.dart';
-import 'package:app_ideas/ideas/view/idea_filter.dart';
 import 'package:flutter/material.dart';
 
 class IdeasView extends StatelessWidget {
@@ -7,15 +6,16 @@ class IdeasView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        IdeaFilter(),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return const IdeaCard();
-            },
+    return CustomScrollView(
+      slivers: [
+        const SliverAppBar(
+          title: Text('App ideas'),
+          floating: true,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => const IdeaCard(),
+            childCount: 20,
           ),
         ),
       ],
