@@ -5,9 +5,13 @@ class ClickableCard extends StatelessWidget {
     Key? key,
     required this.onTap,
     this.title = '',
+    required this.icon,
+    this.backgroundColorInt = 0xFF212A35,
   }) : super(key: key);
 
   final String title;
+  final IconData icon;
+  final int backgroundColorInt;
   final VoidCallback onTap;
 
   @override
@@ -16,10 +20,30 @@ class ClickableCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xBBEEEEEE),
+          color: Color(backgroundColorInt),
           borderRadius: BorderRadius.circular(12.0),
         ),
-        child: Center(child: Text(title)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: const Color(0xFF949ED3),
+              size: 36,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: Colors.grey.shade200),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
