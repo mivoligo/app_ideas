@@ -7,4 +7,10 @@ assignees: ''
 
 ---
 
+**Feel free to propose a new app idea**
 
+**App name**
+
+**Short description**
+
+**Anything extra?**
