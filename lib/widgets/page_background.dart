@@ -24,6 +24,7 @@ class PageBackground extends StatelessWidget {
         ),
       ),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         body: body,
         appBar: appBar,
       ),

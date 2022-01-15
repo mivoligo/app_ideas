@@ -1,3 +1,4 @@
+import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AboutAppPage extends StatelessWidget {
@@ -5,7 +6,7 @@ class AboutAppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PageBackground(
       appBar: AppBar(
         title: const Text('About app'),
       ),
