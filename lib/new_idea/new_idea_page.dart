@@ -1,3 +1,4 @@
+import 'package:app_ideas/external_links/external_links.dart';
 import 'package:flutter/material.dart';
 
 class NewIdeaPage extends StatelessWidget {
@@ -32,8 +33,8 @@ class NewIdeaPage extends StatelessWidget {
                   ' Do you want to share it with others?\n\n'
                   ' You can do that by reporting a new issue in this project'
                   ' repository on GitHub.\n If you ready to do that, just click'
-                  ' the button below and you should land on the page where you '
-                  'can submit your idea',
+                  ' the button below and you should land on the page where you'
+                  ' can submit your idea',
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
@@ -45,7 +46,7 @@ class NewIdeaPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: launchNewIdeaGithubLink,
                 child: const Text('Submit your idea'),
               ),
             ),
