@@ -9,19 +9,20 @@ class IdeasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF1B2234),
-              Color(0xFF131823),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomRight,
-          ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF1B2234),
+            Color(0xFF131823),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomRight,
         ),
-        child: BlocProvider(
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: BlocProvider(
           create: (context) => IdeasCubit(
             context.read<IdeasRepository>(),
           )..fetchIdeas(),
