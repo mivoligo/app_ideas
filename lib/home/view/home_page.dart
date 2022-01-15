@@ -1,3 +1,4 @@
+import 'package:app_ideas/about_app/about_app.page.dart';
 import 'package:app_ideas/home/view/widgets/widgets.dart';
 import 'package:app_ideas/ideas/ideas.dart';
 import 'package:app_ideas/new_idea/new_idea.dart';
@@ -56,7 +57,10 @@ class HomePage extends StatelessWidget {
                       child: ClickableCard(
                         title: 'About this app',
                         icon: Icons.info,
-                        onTap: () {},
+                        onTap: () =>
+                            Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const AboutAppPage(),
+                        )),
                       ),
                     ),
                   ],
