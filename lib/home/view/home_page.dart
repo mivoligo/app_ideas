@@ -1,5 +1,6 @@
 import 'package:app_ideas/home/view/widgets/widgets.dart';
 import 'package:app_ideas/ideas/ideas.dart';
+import 'package:app_ideas/new_idea/new_idea.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -43,7 +44,10 @@ class HomePage extends StatelessWidget {
                       child: ClickableCard(
                         title: 'Propose your idea',
                         icon: Icons.add,
-                        onTap: () {},
+                        onTap: () =>
+                            Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const NewIdeaPage(),
+                        )),
                       ),
                     ),
                     const SizedBox(width: 12),
