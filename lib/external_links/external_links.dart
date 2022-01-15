@@ -1,7 +1,7 @@
 import 'package:app_ideas/utils/utils.dart';
 
 const githubLink = 'github.com';
-const issuesLink = 'mivoligo/app_ideas_page/issues/new';
+const issuesLink = 'mivoligo/app_ideas/issues/new';
 const newIdeaIssueParams = {
   'template': 'new-app-idea.md',
   'title': '[NEW APP IDEA]',
