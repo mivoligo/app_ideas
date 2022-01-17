@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                     flex: 4,
                     child: ClickableCard(
                       title: 'Propose your idea',
-                      icon: Icons.add,
+                      iconData: Icons.add,
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const NewIdeaPage(),
                       )),
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                     flex: 3,
                     child: ClickableCard(
                       title: 'About this app',
-                      icon: Icons.info,
+                      iconData: Icons.info,
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const AboutAppPage(),
                       )),
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                     flex: 1,
                     child: ClickableCard(
                       title: 'Random',
-                      icon: Icons.casino,
+                      iconData: Icons.casino,
                       onTap: () {},
                     ),
                   ),
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                     flex: 2,
                     child: ClickableCard(
                       title: 'Browse Ideas',
-                      icon: Icons.category,
+                      iconData: Icons.category,
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => const IdeasPage(),

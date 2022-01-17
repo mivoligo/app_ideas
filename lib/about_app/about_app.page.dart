@@ -33,19 +33,19 @@ class AboutAppPage extends StatelessWidget {
             ClickableCard(
               title: 'Visit project page',
               onTap: () {},
-              icon: Icons.code,
+              iconData: Icons.code,
             ),
             const SizedBox(height: 12),
             ClickableCard(
               title: 'Report problems',
               onTap: () {},
-              icon: Icons.bug_report,
+              iconData: Icons.bug_report,
             ),
             const SizedBox(height: 12),
             ClickableCard(
               title: 'Suggest improvements',
               onTap: () {},
-              icon: Icons.auto_fix_high,
+              iconData: Icons.auto_fix_high,
             ),
           ],
         ),
