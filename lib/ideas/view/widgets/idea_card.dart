@@ -34,6 +34,9 @@ class IdeaCard extends StatelessWidget {
               height: 120,
               child: CachedNetworkImage(
                 imageUrl: image,
+                placeholder: (context, url) => const Image(
+                  image: AssetImage('assets/images/terminal.jpg'),
+                ),
                 errorWidget: (context, url, error) => const Image(
                   image: AssetImage('assets/images/terminal.jpg'),
                 ),
