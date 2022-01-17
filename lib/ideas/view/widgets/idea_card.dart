@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class IdeaCard extends StatelessWidget {
@@ -5,12 +6,12 @@ class IdeaCard extends StatelessWidget {
     Key? key,
     required this.title,
     required this.description,
-    this.image,
+    required this.image,
   }) : super(key: key);
 
   final String title;
   final String description;
-  final Image? image;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +32,12 @@ class IdeaCard extends StatelessWidget {
             SizedBox(
               width: 120,
               height: 120,
-              child: image ??
-                  Image.asset(
-                    'assets/images/terminal.jpg',
-                    fit: BoxFit.cover,
-                  ),
+              child: CachedNetworkImage(
+                imageUrl: image,
+                errorWidget: (context, url, error) => const Image(
+                  image: AssetImage('assets/images/terminal.jpg'),
+                ),
+              ),
             ),
             Expanded(
               child: Padding(

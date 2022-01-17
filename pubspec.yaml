@@ -39,6 +39,7 @@ dependencies:
   equatable: ^2.0.3
   http: ^0.13.4
   url_launcher: ^6.0.18
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:

@@ -17,6 +17,7 @@ class IdeasPopulated extends StatelessWidget {
           return IdeaCard(
             title: idea.title,
             description: idea.description,
+            image: idea.imageLink,
           );
         },
         childCount: ideas.length,

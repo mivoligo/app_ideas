@@ -10,13 +10,13 @@ class Idea extends Equatable {
   factory Idea.fromJson(Map<String, dynamic> json) {
     final title = json['name'] as String;
     final description = json['attributes']['summary'] as String;
-    final imageLink = json['attributes']['image'] as String?;
+    final imageLink = json['attributes']['image'] as String;
     return Idea(title: title, description: description, imageLink: imageLink);
   }
 
   final String title;
   final String description;
-  final String? imageLink;
+  final String imageLink;
 
   @override
   List<Object?> get props => [title, description, imageLink];
