@@ -12,11 +12,11 @@ class NewIdeaPage extends StatelessWidget {
         title: const Text('Your idea'),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: Center(
                 child: Text(
                   'Do you have an idea for an app?\n\n'
@@ -35,10 +35,11 @@ class NewIdeaPage extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: launchNewIdeaGithubLink,
-              child: Text('Submit your idea'),
+            padding: EdgeInsets.all(12.0),
+            child: ClickableCard(
+              title: 'Submit your idea',
+              iconData: Icons.add,
+              onTap: launchNewIdeaGithubLink,
             ),
           ),
         ],

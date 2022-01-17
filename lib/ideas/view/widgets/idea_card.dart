@@ -17,8 +17,8 @@ class IdeaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 24.0,
-        vertical: 8.0,
+        horizontal: 12.0,
+        vertical: 6.0,
       ),
       child: Container(
         decoration: BoxDecoration(

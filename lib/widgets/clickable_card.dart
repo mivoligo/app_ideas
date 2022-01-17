@@ -30,7 +30,7 @@ class ClickableCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.only(top: 12.0),
                 child: Icon(
                   iconData,
                   color: const Color(0xFF949ED3),
@@ -38,7 +38,7 @@ class ClickableCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(12.0),
                 child: Text(
                   title,
                   textAlign: TextAlign.center,
