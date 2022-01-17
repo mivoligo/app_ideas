@@ -1,3 +1,4 @@
+import 'package:app_ideas/external_links/external_links.dart';
 import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -30,21 +31,21 @@ class AboutAppPage extends StatelessWidget {
                   ?.copyWith(color: Colors.grey.shade600),
             ),
             const Spacer(),
-            ClickableCard(
+            const ClickableCard(
               title: 'Visit project page',
-              onTap: () {},
+              onTap: launchProjectHomeGithubLink,
               iconData: Icons.code,
             ),
             const SizedBox(height: 12),
-            ClickableCard(
+            const ClickableCard(
               title: 'Report problems',
-              onTap: () {},
+              onTap: launchNewBugGithubLink,
               iconData: Icons.bug_report,
             ),
             const SizedBox(height: 12),
-            ClickableCard(
+            const ClickableCard(
               title: 'Suggest improvements',
-              onTap: () {},
+              onTap: launchNewFeatureGithubLink,
               iconData: Icons.auto_fix_high,
             ),
           ],
