@@ -20,6 +20,10 @@ const newFeatureIssueParams = {
   'labels': 'enhancement',
 };
 
+const dribbbleLink = 'dribbble.com';
+
+const dribbbleSearchLink = 'search';
+
 Future<void> launchProjectHomeGithubLink() => openLink(githubLink, projectLink);
 
 Future<void> launchNewIdeaGithubLink() =>
@@ -30,3 +34,6 @@ Future<void> launchNewBugGithubLink() =>
 
 Future<void> launchNewFeatureGithubLink() =>
     openLink(githubLink, issuesLink, queryParams: newFeatureIssueParams);
+
+Future<void> launchDribbbleSearchLink(String searchValue) =>
+    openLink(dribbbleLink, dribbbleSearchLink, queryParams: {'q': searchValue});

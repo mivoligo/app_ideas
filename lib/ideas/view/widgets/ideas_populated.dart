@@ -21,7 +21,7 @@ class IdeasPopulated extends StatelessWidget {
             image: idea.imageLink,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const IdeaDetailsPage(),
+                builder: (context) => IdeaDetailsPage(idea: idea),
               ),
             ),
           );
