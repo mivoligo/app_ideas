@@ -1,3 +1,4 @@
+import 'package:app_ideas/idea_details/idea_details.dart';
 import 'package:app_ideas/ideas/model/idea_model.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,11 @@ class IdeasPopulated extends StatelessWidget {
             title: idea.title,
             description: idea.description,
             image: idea.imageLink,
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const IdeaDetailsPage(),
+              ),
+            ),
           );
         },
         childCount: ideas.length,
