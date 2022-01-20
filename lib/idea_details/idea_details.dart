@@ -1,1 +1,1 @@
-export 'idea_details_page.dart';
+export 'view/idea_details_page.dart';
