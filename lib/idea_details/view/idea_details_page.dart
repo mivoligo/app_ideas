@@ -18,19 +18,17 @@ class IdeaDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(idea.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ClickableCard(
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: ClickableCard(
               title: 'See UI ideas for this app',
               iconData: Icons.image,
               onTap: () => launchDribbbleSearchLink(idea.title),
             ),
-            const Expanded(child: CodeExamplesView()),
-          ],
-        ),
+          ),
+          const CodeExamplesView(),
+        ],
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ClickableCard extends StatelessWidget {
   const ClickableCard({
     Key? key,
-    this.title = '',
+    required this.title,
     required this.iconData,
     this.backgroundColorInt = 0xFF212A35,
     required this.onTap,

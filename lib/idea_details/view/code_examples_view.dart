@@ -1,4 +1,5 @@
 import 'package:app_ideas/idea_details/cubit/code_examples_cubit.dart';
+import 'package:app_ideas/idea_details/models/github_result.dart';
 import 'package:app_ideas/idea_details/repository/github_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,19 +24,120 @@ class CodeExamplesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CodeExamplesCubit, CodeExamplesState>(
       builder: (context, state) {
-        return ListView.builder(
-          itemCount: state.examples.length,
-          itemBuilder: (context, index) {
-            final example = state.examples[index];
-            return Card(
-              child: ListTile(
-                title: Text(
-                    '${example.name}, ${example.language}, ${example.score}, ${example.forks}'),
+        switch (state.status) {
+          case CodeExamplesStatus.initial:
+          case CodeExamplesStatus.loading:
+            return const SliverFillRemaining(
+              child: Center(
+                child: CircularProgressIndicator(),
               ),
             );
-          },
-        );
+          case CodeExamplesStatus.success:
+            return _ExamplesPopulated(results: state.examples);
+          case CodeExamplesStatus.failure:
+            // TODO: Handle this case.
+            break;
+        }
+        return const SliverFillRemaining();
       },
+    );
+  }
+}
+
+class _ExamplesPopulated extends StatelessWidget {
+  const _ExamplesPopulated({Key? key, required this.results}) : super(key: key);
+
+  final List<GithubResult> results;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: 240,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: results.length,
+          itemBuilder: (context, index) {
+            final result = results[index];
+            return _CodeExampleCard(
+              name: result.name,
+              summary: result.description,
+              language: result.language,
+              stars: result.forks,
+              onTap: () {},
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _CodeExampleCard extends StatelessWidget {
+  const _CodeExampleCard({
+    Key? key,
+    required this.name,
+    this.summary,
+    required this.stars,
+    this.language,
+    required this.onTap,
+  }) : super(key: key);
+
+  final String name;
+  final String? summary;
+  final int stars;
+  final String? language;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(6.0),
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        width: 200,
+        decoration: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    name,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        ?.copyWith(color: Colors.grey.shade200),
+                  ),
+                  if (summary != null)
+                    Text(
+                      summary!,
+                    ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      if (language != null) Text(language!),
+                      const Spacer(),
+                      const Icon(
+                        Icons.star,
+                      ),
+                      Text('$stars'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
