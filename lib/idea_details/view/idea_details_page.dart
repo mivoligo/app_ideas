@@ -27,7 +27,7 @@ class IdeaDetailsPage extends StatelessWidget {
               onTap: () => launchDribbbleSearchLink(idea.title),
             ),
           ),
-          const CodeExamplesView(),
+          CodeExamplesView(query: idea.title),
         ],
       ),
     );

@@ -6,15 +6,17 @@ import 'package:equatable/equatable.dart';
 part 'code_examples_state.dart';
 
 class CodeExamplesCubit extends Cubit<CodeExamplesState> {
-  CodeExamplesCubit(this._githubRepository) : super(const CodeExamplesState());
+  CodeExamplesCubit(this._githubRepository, {required this.query})
+      : super(const CodeExamplesState());
 
   final GithubRepository _githubRepository;
+  final String query;
 
   Future<void> fetchCodeExamples() async {
     emit(state.copyWith(status: CodeExamplesStatus.loading));
 
     try {
-      final examples = await _githubRepository.fetchResults();
+      final examples = await _githubRepository.fetchResults(query);
       emit(state.copyWith(
           status: CodeExamplesStatus.success, examples: examples));
     } on Exception {

@@ -11,8 +11,8 @@ class GithubRepository {
   static const searchPath = 'search/repositories';
   final http.Client _httpClient;
 
-  Future<List<GithubResult>> fetchResults() async {
-    final request = Uri.https(githubUrl, searchPath, {'q': 'linux'});
+  Future<List<GithubResult>> fetchResults(String query) async {
+    final request = Uri.https(githubUrl, searchPath, {'q': '$query in:readme'});
 
     final response = await _httpClient.get(request);
 

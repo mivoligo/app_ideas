@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CodeExamplesView extends StatelessWidget {
-  const CodeExamplesView({Key? key}) : super(key: key);
+  const CodeExamplesView({Key? key, required this.query}) : super(key: key);
+
+  final String query;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          CodeExamplesCubit(GithubRepository())..fetchCodeExamples(),
+      create: (context) => CodeExamplesCubit(GithubRepository(), query: query)
+        ..fetchCodeExamples(),
       child: const CodeExamplesList(),
     );
   }
