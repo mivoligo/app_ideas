@@ -23,4 +23,7 @@ class CodeExamplesCubit extends Cubit<CodeExamplesState> {
       emit(state.copyWith(status: CodeExamplesStatus.failure));
     }
   }
+
+  Future<void> launchMoreResultsGithubLink() =>
+      _githubRepository.launchMoreResultsGithubLink(query);
 }

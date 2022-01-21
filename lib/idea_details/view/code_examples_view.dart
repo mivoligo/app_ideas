@@ -2,6 +2,7 @@ import 'package:app_ideas/external_links/external_links.dart';
 import 'package:app_ideas/idea_details/cubit/code_examples_cubit.dart';
 import 'package:app_ideas/idea_details/models/github_result.dart';
 import 'package:app_ideas/idea_details/repository/github_repository.dart';
+import 'package:app_ideas/widgets/clickable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +37,9 @@ class CodeExamplesList extends StatelessWidget {
               ),
             );
           case CodeExamplesStatus.success:
-            return _ExamplesPopulated(results: state.examples);
+            return _ExamplesPopulated(
+              results: state.examples,
+            );
           case CodeExamplesStatus.failure:
             // TODO: Handle this case.
             break;
@@ -48,7 +51,10 @@ class CodeExamplesList extends StatelessWidget {
 }
 
 class _ExamplesPopulated extends StatelessWidget {
-  const _ExamplesPopulated({Key? key, required this.results}) : super(key: key);
+  const _ExamplesPopulated({
+    Key? key,
+    required this.results,
+  }) : super(key: key);
 
   final List<GithubResult> results;
 
@@ -59,16 +65,29 @@ class _ExamplesPopulated extends StatelessWidget {
         height: 240,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: results.length,
+          itemCount: results.length + 1,
           itemBuilder: (context, index) {
-            final result = results[index];
-            return _CodeExampleCard(
-              name: result.name,
-              summary: result.description,
-              language: result.language,
-              stars: result.forks,
-              onTap: () => launchExampleCodeGithubLink(result.svnUrl),
-            );
+            if (index < results.length) {
+              final result = results[index];
+              return _CodeExampleCard(
+                name: result.name,
+                summary: result.description,
+                language: result.language,
+                stars: result.forks,
+                onTap: () => launchExampleCodeGithubLink(result.svnUrl),
+              );
+            } else {
+              return Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: ClickableCard(
+                  title: 'More examples on GitHub',
+                  iconData: Icons.north_east,
+                  onTap: () => context
+                      .read<CodeExamplesCubit>()
+                      .launchMoreResultsGithubLink(),
+                ),
+              );
+            }
           },
         ),
       ),

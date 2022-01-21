@@ -1,20 +1,23 @@
 import 'dart:convert';
 
 import 'package:app_ideas/idea_details/models/github_result.dart';
+import 'package:app_ideas/utils/links_helper.dart';
 import 'package:http/http.dart' as http;
 
 class GithubRepository {
   GithubRepository({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
-  static const githubUrl = 'api.github.com';
-  static const searchPath = 'search/repositories';
+  static const githubApiUrl = 'api.github.com';
+  static const githubUrl = 'github.com';
+  static const searchPath = 'search';
+  static const searchReposPath = 'search/repositories';
   final http.Client _httpClient;
 
   Future<List<GithubResult>> fetchResults(String query) async {
     final request = Uri.https(
-      githubUrl,
-      searchPath,
+      githubApiUrl,
+      searchReposPath,
       {'q': '$query app in:readme'},
     );
 
@@ -30,4 +33,10 @@ class GithubRepository {
 
     return results.map((e) => GithubResult.fromJson(e)).toList();
   }
+
+  Future<void> launchMoreResultsGithubLink(String query) async => openLink(
+        githubUrl,
+        searchPath,
+        queryParams: {'q': query},
+      );
 }
