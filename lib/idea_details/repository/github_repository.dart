@@ -12,7 +12,11 @@ class GithubRepository {
   final http.Client _httpClient;
 
   Future<List<GithubResult>> fetchResults(String query) async {
-    final request = Uri.https(githubUrl, searchPath, {'q': '$query in:readme'});
+    final request = Uri.https(
+      githubUrl,
+      searchPath,
+      {'q': '$query app in:readme'},
+    );
 
     final response = await _httpClient.get(request);
 
