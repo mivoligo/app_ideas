@@ -114,18 +114,31 @@ class _CodeExampleCard extends StatelessWidget {
                     name,
                     style: Theme.of(context)
                         .textTheme
-                        .headline6
-                        ?.copyWith(color: Colors.grey.shade200),
+                        .bodyText1
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  if (summary != null)
-                    Text(
-                      summary!,
-                    ),
-                  const Spacer(),
+                  summary != null
+                      ? Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Text(
+                              summary!,
+                              overflow: TextOverflow.fade,
+                            ),
+                          ),
+                        )
+                      : const Spacer(),
                   Row(
                     children: [
-                      if (language != null) Text(language!),
-                      const Spacer(),
+                      language != null
+                          ? Expanded(
+                              child: Text(
+                                language!,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                            )
+                          : const Spacer(),
                       const Icon(
                         Icons.star,
                       ),
