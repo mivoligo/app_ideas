@@ -5,7 +5,7 @@ class GithubResult {
     required this.name,
     required this.fullName,
     required this.description,
-    required this.url,
+    required this.svnUrl,
     required this.createdAt,
     required this.updatedAt,
     required this.language,
@@ -17,7 +17,7 @@ class GithubResult {
   final String name;
   final String fullName;
   final String? description;
-  final String url;
+  final String svnUrl;
   final String createdAt;
   final String updatedAt;
   final String? language;
@@ -30,7 +30,7 @@ class GithubResult {
       name: json['name'],
       fullName: json['full_name'],
       description: json['description'],
-      url: json['url'],
+      svnUrl: json['svn_url'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
       language: json['language'],

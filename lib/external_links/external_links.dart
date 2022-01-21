@@ -37,3 +37,5 @@ Future<void> launchNewFeatureGithubLink() =>
 
 Future<void> launchDribbbleSearchLink(String searchValue) =>
     openLink(dribbbleLink, dribbbleSearchLink, queryParams: {'q': searchValue});
+
+Future<void> launchExampleCodeGithubLink(String link) => openSimpleLink(link);

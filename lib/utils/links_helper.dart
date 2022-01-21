@@ -18,3 +18,15 @@ Future<void> openLink(
     onError();
   }
 }
+
+Future<void> openSimpleLink(
+  String link, {
+  VoidCallback? onError,
+}) async {
+  // final Uri launchUri = Uri.parse(link);
+  if (await canLaunch(link)) {
+    await launch(link);
+  } else if (onError != null) {
+    onError();
+  }
+}

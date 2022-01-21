@@ -1,3 +1,4 @@
+import 'package:app_ideas/external_links/external_links.dart';
 import 'package:app_ideas/idea_details/cubit/code_examples_cubit.dart';
 import 'package:app_ideas/idea_details/models/github_result.dart';
 import 'package:app_ideas/idea_details/repository/github_repository.dart';
@@ -66,7 +67,7 @@ class _ExamplesPopulated extends StatelessWidget {
               summary: result.description,
               language: result.language,
               stars: result.forks,
-              onTap: () {},
+              onTap: () => launchExampleCodeGithubLink(result.svnUrl),
             );
           },
         ),
