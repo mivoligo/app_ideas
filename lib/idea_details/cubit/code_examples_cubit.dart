@@ -6,13 +6,11 @@ import 'package:equatable/equatable.dart';
 part 'code_examples_state.dart';
 
 class CodeExamplesCubit extends Cubit<CodeExamplesState> {
-  CodeExamplesCubit(this._githubRepository, {required this.query})
-      : super(const CodeExamplesState());
+  CodeExamplesCubit(this._githubRepository) : super(const CodeExamplesState());
 
   final GithubRepository _githubRepository;
-  final String query;
 
-  Future<void> fetchCodeExamples() async {
+  Future<void> fetchCodeExamples({required String query}) async {
     emit(state.copyWith(status: CodeExamplesStatus.loading));
 
     try {
@@ -23,7 +21,4 @@ class CodeExamplesCubit extends Cubit<CodeExamplesState> {
       emit(state.copyWith(status: CodeExamplesStatus.failure));
     }
   }
-
-  Future<void> launchMoreResultsGithubLink() =>
-      _githubRepository.launchMoreResultsGithubLink(query);
 }

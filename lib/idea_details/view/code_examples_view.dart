@@ -14,8 +14,9 @@ class CodeExamplesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CodeExamplesCubit(GithubRepository(), query: query)
-        ..fetchCodeExamples(),
+      create: (context) => CodeExamplesCubit(
+        GithubRepository(),
+      )..fetchCodeExamples(query: query),
       child: const CodeExamplesList(),
     );
   }
@@ -80,12 +81,9 @@ class _ExamplesPopulated extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: ClickableCard(
-                  title: 'More examples on GitHub',
-                  iconData: Icons.north_east,
-                  onTap: () => context
-                      .read<CodeExamplesCubit>()
-                      .launchMoreResultsGithubLink(),
-                ),
+                    title: 'More examples on GitHub',
+                    iconData: Icons.north_east,
+                    onTap: () {}),
               );
             }
           },
