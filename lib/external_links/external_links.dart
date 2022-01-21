@@ -1,6 +1,7 @@
 import 'package:app_ideas/utils/utils.dart';
 
 const githubLink = 'github.com';
+const githubSearchLink = 'search';
 const projectLink = 'mivoligo/app_ideas';
 const issuesLink = 'mivoligo/app_ideas/issues/new';
 const newIdeaIssueParams = {
@@ -39,3 +40,9 @@ Future<void> launchDribbbleSearchLink(String searchValue) =>
     openLink(dribbbleLink, dribbbleSearchLink, queryParams: {'q': searchValue});
 
 Future<void> launchExampleCodeGithubLink(String link) => openSimpleLink(link);
+
+Future<void> launchMoreExamplesGithubLink({required String query}) => openLink(
+      githubLink,
+      githubSearchLink,
+      queryParams: {'q': query},
+    );

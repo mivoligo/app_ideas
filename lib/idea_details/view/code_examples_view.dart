@@ -17,13 +17,18 @@ class CodeExamplesView extends StatelessWidget {
       create: (context) => CodeExamplesCubit(
         GithubRepository(),
       )..fetchCodeExamples(query: query),
-      child: const CodeExamplesList(),
+      child: CodeExamplesList(query: query),
     );
   }
 }
 
 class CodeExamplesList extends StatelessWidget {
-  const CodeExamplesList({Key? key}) : super(key: key);
+  const CodeExamplesList({
+    Key? key,
+    required this.query,
+  }) : super(key: key);
+
+  final String query;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +45,7 @@ class CodeExamplesList extends StatelessWidget {
           case CodeExamplesStatus.success:
             return _ExamplesPopulated(
               results: state.examples,
+              query: query,
             );
           case CodeExamplesStatus.failure:
             // TODO: Handle this case.
@@ -55,9 +61,11 @@ class _ExamplesPopulated extends StatelessWidget {
   const _ExamplesPopulated({
     Key? key,
     required this.results,
+    required this.query,
   }) : super(key: key);
 
   final List<GithubResult> results;
+  final String query;
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +89,10 @@ class _ExamplesPopulated extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: ClickableCard(
-                    title: 'More examples on GitHub',
-                    iconData: Icons.north_east,
-                    onTap: () {}),
+                  title: 'More examples on GitHub',
+                  iconData: Icons.north_east,
+                  onTap: () => launchMoreExamplesGithubLink(query: query),
+                ),
               );
             }
           },
