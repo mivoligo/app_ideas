@@ -41,8 +41,12 @@ Future<void> launchDribbbleSearchLink(String searchValue) =>
 
 Future<void> launchExampleCodeGithubLink(String link) => openSimpleLink(link);
 
-Future<void> launchMoreExamplesGithubLink({required String query}) => openLink(
-      githubLink,
-      githubSearchLink,
-      queryParams: {'q': query},
-    );
+Future<void> launchMoreExamplesGithubLink(
+    {required List<String> searchKeywords}) {
+  final query = searchKeywords.join(' ');
+  return openLink(
+    githubLink,
+    githubSearchLink,
+    queryParams: {'q': query},
+  );
+}

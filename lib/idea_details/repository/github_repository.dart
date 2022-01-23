@@ -14,11 +14,12 @@ class GithubRepository {
   static const searchReposPath = 'search/repositories';
   final http.Client _httpClient;
 
-  Future<List<GithubResult>> fetchResults(String query) async {
+  Future<List<GithubResult>> fetchResults(List<String> searchKeywords) async {
+    final query = searchKeywords.join(' ');
     final request = Uri.https(
       githubApiUrl,
       searchReposPath,
-      {'q': '$query app in:readme'},
+      {'q': query},
     );
 
     final response = await _httpClient.get(request);

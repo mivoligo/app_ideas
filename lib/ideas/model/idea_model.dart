@@ -1,23 +1,49 @@
-import 'package:equatable/equatable.dart';
-
-class Idea extends Equatable {
+class Idea {
   const Idea({
+    required this.id,
     required this.title,
-    required this.description,
-    required this.imageLink,
+    required this.attributes,
   });
 
   factory Idea.fromJson(Map<String, dynamic> json) {
+    final id = json['id'] as String;
     final title = json['name'] as String;
-    final description = json['attributes']['summary'] as String;
-    final imageLink = json['attributes']['image'] as String;
-    return Idea(title: title, description: description, imageLink: imageLink);
+    final attributes = Attributes.fromJson(json['attributes']);
+    return Idea(
+      id: id,
+      title: title,
+      attributes: attributes,
+    );
   }
 
+  final String id;
   final String title;
-  final String description;
-  final String imageLink;
+  final Attributes attributes;
+}
 
-  @override
-  List<Object?> get props => [title, description, imageLink];
+class Attributes {
+  Attributes({
+    required this.summary,
+    required this.imageLink,
+    required this.tags,
+    required this.searchKeywords,
+  });
+
+  factory Attributes.fromJson(Map<String, dynamic> json) {
+    final summary = json['summary'] as String;
+    final imageLink = json['image'] as String;
+    final tags = List<String>.from(json['tags']);
+    final searchKeywords = List<String>.from(json['search_keywords']);
+    return Attributes(
+      summary: summary,
+      imageLink: imageLink,
+      tags: tags,
+      searchKeywords: searchKeywords,
+    );
+  }
+
+  final String summary;
+  final String imageLink;
+  final List<String> tags;
+  final List<String> searchKeywords;
 }

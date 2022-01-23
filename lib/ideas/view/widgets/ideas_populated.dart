@@ -17,8 +17,8 @@ class IdeasPopulated extends StatelessWidget {
           final idea = ideas[index];
           return IdeaCard(
             title: idea.title,
-            description: idea.description,
-            image: idea.imageLink,
+            description: idea.attributes.summary,
+            image: idea.attributes.imageLink,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => IdeaDetailsPage(idea: idea),

@@ -10,11 +10,11 @@ class CodeExamplesCubit extends Cubit<CodeExamplesState> {
 
   final GithubRepository _githubRepository;
 
-  Future<void> fetchCodeExamples({required String query}) async {
+  Future<void> fetchCodeExamples({required List<String> searchKeywords}) async {
     emit(state.copyWith(status: CodeExamplesStatus.loading));
 
     try {
-      final examples = await _githubRepository.fetchResults(query);
+      final examples = await _githubRepository.fetchResults(searchKeywords);
       emit(state.copyWith(
           status: CodeExamplesStatus.success, examples: examples));
     } on Exception {

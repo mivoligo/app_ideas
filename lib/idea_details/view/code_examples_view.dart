@@ -7,17 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CodeExamplesView extends StatelessWidget {
-  const CodeExamplesView({Key? key, required this.query}) : super(key: key);
+  const CodeExamplesView({Key? key, required this.searchKeywords})
+      : super(key: key);
 
-  final String query;
+  final List<String> searchKeywords;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CodeExamplesCubit(
         GithubRepository(),
-      )..fetchCodeExamples(query: query),
-      child: CodeExamplesList(query: query),
+      )..fetchCodeExamples(searchKeywords: searchKeywords),
+      child: CodeExamplesList(searchKeywords: searchKeywords),
     );
   }
 }
@@ -25,10 +26,10 @@ class CodeExamplesView extends StatelessWidget {
 class CodeExamplesList extends StatelessWidget {
   const CodeExamplesList({
     Key? key,
-    required this.query,
+    required this.searchKeywords,
   }) : super(key: key);
 
-  final String query;
+  final List<String> searchKeywords;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class CodeExamplesList extends StatelessWidget {
           case CodeExamplesStatus.success:
             return _ExamplesPopulated(
               results: state.examples,
-              query: query,
+              searchKeywords: searchKeywords,
             );
           case CodeExamplesStatus.failure:
             // TODO: Handle this case.
@@ -61,11 +62,11 @@ class _ExamplesPopulated extends StatelessWidget {
   const _ExamplesPopulated({
     Key? key,
     required this.results,
-    required this.query,
+    required this.searchKeywords,
   }) : super(key: key);
 
   final List<GithubResult> results;
-  final String query;
+  final List<String> searchKeywords;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,8 @@ class _ExamplesPopulated extends StatelessWidget {
                 child: ClickableCard(
                   title: 'More examples on GitHub',
                   iconData: Icons.north_east,
-                  onTap: () => launchMoreExamplesGithubLink(query: query),
+                  onTap: () => launchMoreExamplesGithubLink(
+                      searchKeywords: searchKeywords),
                 ),
               );
             }
