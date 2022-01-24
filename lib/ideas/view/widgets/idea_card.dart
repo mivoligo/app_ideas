@@ -7,12 +7,14 @@ class IdeaCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.image,
+    required this.heroTag,
     required this.onTap,
   }) : super(key: key);
 
   final String title;
   final String description;
   final String image;
+  final String heroTag;
   final VoidCallback onTap;
 
   @override
@@ -35,13 +37,16 @@ class IdeaCard extends StatelessWidget {
               SizedBox(
                 width: 120,
                 height: 120,
-                child: CachedNetworkImage(
-                  imageUrl: image,
-                  placeholder: (context, url) => const Image(
-                    image: AssetImage('assets/images/terminal.jpg'),
-                  ),
-                  errorWidget: (context, url, error) => const Image(
-                    image: AssetImage('assets/images/terminal.jpg'),
+                child: Hero(
+                  tag: heroTag,
+                  child: CachedNetworkImage(
+                    imageUrl: image,
+                    placeholder: (context, url) => const Image(
+                      image: AssetImage('assets/images/terminal.jpg'),
+                    ),
+                    errorWidget: (context, url, error) => const Image(
+                      image: AssetImage('assets/images/terminal.jpg'),
+                    ),
                   ),
                 ),
               ),
@@ -54,12 +59,18 @@ class IdeaCard extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Text(
-                          title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(color: const Color(0xFF949ED3)),
+                        child: Hero(
+                          tag: '${heroTag}text',
+                          child: Material(
+                            type: MaterialType.transparency,
+                            child: Text(
+                              title,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(color: const Color(0xFF949ED3)),
+                            ),
+                          ),
                         ),
                       ),
                       Text(

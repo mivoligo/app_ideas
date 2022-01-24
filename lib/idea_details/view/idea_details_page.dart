@@ -24,7 +24,16 @@ class IdeaDetailsPage extends StatelessWidget {
             pinned: true,
             expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(idea.title),
+              title: Hero(
+                tag: '${idea.id}text',
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: Text(
+                    idea.title,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
               collapseMode: CollapseMode.parallax,
               background: DecoratedBox(
                 position: DecorationPosition.foreground,
@@ -39,15 +48,18 @@ class IdeaDetailsPage extends StatelessWidget {
                   ),
                 ),
                 child: ImageFiltered(
-                  imageFilter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
-                  child: CachedNetworkImage(
-                    imageUrl: idea.attributes.imageLink,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => const Image(
-                      image: AssetImage('assets/images/terminal.jpg'),
-                    ),
-                    errorWidget: (context, url, error) => const Image(
-                      image: AssetImage('assets/images/terminal.jpg'),
+                  imageFilter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                  child: Hero(
+                    tag: idea.id,
+                    child: CachedNetworkImage(
+                      imageUrl: idea.attributes.imageLink,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => const Image(
+                        image: AssetImage('assets/images/terminal.jpg'),
+                      ),
+                      errorWidget: (context, url, error) => const Image(
+                        image: AssetImage('assets/images/terminal.jpg'),
+                      ),
                     ),
                   ),
                 ),

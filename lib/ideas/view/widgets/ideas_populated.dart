@@ -18,6 +18,7 @@ class IdeasPopulated extends StatelessWidget {
           return IdeaCard(
             title: idea.title,
             description: idea.attributes.summary,
+            heroTag: idea.id,
             image: idea.attributes.imageLink,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
