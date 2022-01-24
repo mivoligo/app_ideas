@@ -35,35 +35,7 @@ class IdeaDetailsPage extends StatelessWidget {
                 ),
               ),
               collapseMode: CollapseMode.parallax,
-              background: DecoratedBox(
-                position: DecorationPosition.foreground,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Theme.of(context).primaryColor.withOpacity(0.8)
-                    ],
-                  ),
-                ),
-                child: ImageFiltered(
-                  imageFilter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                  child: Hero(
-                    tag: idea.id,
-                    child: CachedNetworkImage(
-                      imageUrl: idea.attributes.imageLink,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => const Image(
-                        image: AssetImage('assets/images/terminal.jpg'),
-                      ),
-                      errorWidget: (context, url, error) => const Image(
-                        image: AssetImage('assets/images/terminal.jpg'),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              background: _AnimatedDecoratedBox(idea: idea),
             ),
           ),
           SliverToBoxAdapter(
@@ -86,5 +58,54 @@ class IdeaDetailsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _AnimatedDecoratedBox extends StatelessWidget {
+  const _AnimatedDecoratedBox({
+    Key? key,
+    required this.idea,
+  }) : super(key: key);
+
+  final Idea idea;
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder(
+        duration: const Duration(milliseconds: 500),
+        tween: Tween<double>(begin: 0.0, end: 1.0),
+        curve: Curves.easeIn,
+        child: ImageFiltered(
+          imageFilter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+          child: Hero(
+            tag: idea.id,
+            child: CachedNetworkImage(
+              imageUrl: idea.attributes.imageLink,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const Image(
+                image: AssetImage('assets/images/terminal.jpg'),
+              ),
+              errorWidget: (context, url, error) => const Image(
+                image: AssetImage('assets/images/terminal.jpg'),
+              ),
+            ),
+          ),
+        ),
+        builder: (context, double value, child) {
+          return DecoratedBox(
+            position: DecorationPosition.foreground,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  Theme.of(context).primaryColor.withOpacity(value)
+                ],
+              ),
+            ),
+            child: child,
+          );
+        });
   }
 }
