@@ -6,6 +6,8 @@ import 'package:app_ideas/widgets/clickable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+const double kExamplesRowHeight = 240.0;
+
 class CodeExamplesView extends StatelessWidget {
   const CodeExamplesView({Key? key, required this.searchKeywords})
       : super(key: key);
@@ -38,22 +40,49 @@ class CodeExamplesList extends StatelessWidget {
         switch (state.status) {
           case CodeExamplesStatus.initial:
           case CodeExamplesStatus.loading:
-            return const SliverFillRemaining(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+            return const _ExamplesLoading();
           case CodeExamplesStatus.success:
             return _ExamplesPopulated(
               results: state.examples,
               searchKeywords: searchKeywords,
             );
           case CodeExamplesStatus.failure:
-            // TODO: Handle this case.
-            break;
+            return _ExampleError(
+              onReloadTap: () => context
+                  .read<CodeExamplesCubit>()
+                  .fetchCodeExamples(searchKeywords: searchKeywords),
+              onGoToGithubTap: () =>
+                  launchMoreExamplesGithubLink(searchKeywords: searchKeywords),
+            );
         }
-        return const SliverFillRemaining();
       },
+    );
+  }
+}
+
+class _ExamplesLoading extends StatelessWidget {
+  const _ExamplesLoading({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: kExamplesRowHeight,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            children: const [
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text('Fetching examples from GitHub'),
+              ),
+              Expanded(child: Center(child: CircularProgressIndicator())),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -72,7 +101,7 @@ class _ExamplesPopulated extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 240,
+        height: kExamplesRowHeight,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: results.length + 1,
@@ -98,6 +127,68 @@ class _ExamplesPopulated extends StatelessWidget {
               );
             }
           },
+        ),
+      ),
+    );
+  }
+}
+
+class _ExampleError extends StatelessWidget {
+  const _ExampleError({
+    Key? key,
+    required this.onReloadTap,
+    required this.onGoToGithubTap,
+  }) : super(key: key);
+
+  final VoidCallback onReloadTap;
+  final VoidCallback onGoToGithubTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: kExamplesRowHeight,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+              const Icon(
+                Icons.cloud_off,
+                size: 80,
+              ),
+              const Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text(
+                    'Something went wrong when fetching examples.\n'
+                    'Please check your internet connection and try again.',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton.icon(
+                      label: const Text('Reload'),
+                      icon: const Icon(Icons.refresh),
+                      onPressed: onReloadTap,
+                    ),
+                    ElevatedButton.icon(
+                      label: const Text('Open in browser'),
+                      icon: const Icon(Icons.launch),
+                      onPressed: onGoToGithubTap,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
