@@ -44,7 +44,7 @@ class ClickableCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
-                      .headline6
+                      .bodyLarge
                       ?.copyWith(color: Colors.grey.shade200),
                 ),
               ),
