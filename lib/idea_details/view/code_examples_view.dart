@@ -109,11 +109,12 @@ class _ExamplesPopulated extends StatelessWidget {
             if (index < results.length) {
               final result = results[index];
               return _CodeExampleCard(
+                owner: result.owner,
                 name: result.name,
                 summary: result.description,
                 language: result.language,
-                stars: result.forks,
-                onTap: () => launchExampleCodeGithubLink(result.svnUrl),
+                stars: result.stars,
+                onTap: () => launchExampleCodeGithubLink(result.projectUrl),
               );
             } else {
               return Padding(
@@ -198,6 +199,7 @@ class _ExampleError extends StatelessWidget {
 class _CodeExampleCard extends StatelessWidget {
   const _CodeExampleCard({
     Key? key,
+    required this.owner,
     required this.name,
     this.summary,
     required this.stars,
@@ -205,6 +207,7 @@ class _CodeExampleCard extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
+  final Owner owner;
   final String name;
   final String? summary;
   final int stars;
@@ -217,7 +220,7 @@ class _CodeExampleCard extends StatelessWidget {
       padding: const EdgeInsets.all(6.0),
       child: Container(
         clipBehavior: Clip.antiAlias,
-        width: 200,
+        width: 210,
         decoration: BoxDecoration(
           color: Colors.grey,
           borderRadius: BorderRadius.circular(12.0),
@@ -229,15 +232,34 @@ class _CodeExampleCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${owner.name}/',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            Text(
+                              name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      CircleAvatar(
+                        foregroundImage: NetworkImage(owner.avatarUrl),
+                      ),
+                    ],
                   ),
                   summary != null
                       ? Expanded(

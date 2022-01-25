@@ -1,40 +1,48 @@
 class GithubResult {
   GithubResult({
     required this.id,
-    required this.nodeId,
     required this.name,
-    required this.fullName,
     required this.description,
-    required this.svnUrl,
-    required this.createdAt,
-    required this.updatedAt,
+    required this.projectUrl,
     required this.language,
-    required this.forks,
+    required this.stars,
+    required this.owner,
   });
-
-  final int id;
-  final String nodeId;
-  final String name;
-  final String fullName;
-  final String? description;
-  final String svnUrl;
-  final String createdAt;
-  final String updatedAt;
-  final String? language;
-  final int forks;
 
   factory GithubResult.fromJson(Map<String, dynamic> json) {
     return GithubResult(
-      id: json['id'],
-      nodeId: json['node_id'],
-      name: json['name'],
-      fullName: json['full_name'],
-      description: json['description'],
-      svnUrl: json['svn_url'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
-      language: json['language'],
-      forks: json['forks'],
+      id: json['id'] as int,
+      name: json['name'] as String,
+      description: json['description'] as String?,
+      projectUrl: json['svn_url'] as String,
+      language: json['language'] as String?,
+      stars: json['stargazers_count'] as int,
+      owner: Owner.fromJson(json['owner']),
     );
   }
+
+  final int id;
+  final String name;
+  final String? description;
+  final String projectUrl;
+  final String? language;
+  final int stars;
+  final Owner owner;
+}
+
+class Owner {
+  const Owner({
+    required this.name,
+    required this.avatarUrl,
+  });
+
+  factory Owner.fromJson(Map<String, dynamic> json) {
+    return Owner(
+      name: json['login'] as String,
+      avatarUrl: json['avatar_url'] as String,
+    );
+  }
+
+  final String name;
+  final String avatarUrl;
 }
