@@ -6,13 +6,10 @@ class Idea {
   });
 
   factory Idea.fromJson(Map<String, dynamic> json) {
-    final id = json['id'] as String;
-    final title = json['name'] as String;
-    final attributes = Attributes.fromJson(json['attributes']);
     return Idea(
-      id: id,
-      title: title,
-      attributes: attributes,
+      id: json['id'] as String,
+      title: json['name'] as String,
+      attributes: Attributes.fromJson(json['attributes']),
     );
   }
 
@@ -30,15 +27,11 @@ class Attributes {
   });
 
   factory Attributes.fromJson(Map<String, dynamic> json) {
-    final summary = json['summary'] as String;
-    final imageLink = json['image'] as String;
-    final tags = List<String>.from(json['tags']);
-    final searchKeywords = List<String>.from(json['search_keywords']);
     return Attributes(
-      summary: summary,
-      imageLink: imageLink,
-      tags: tags,
-      searchKeywords: searchKeywords,
+      summary: json['summary'] as String,
+      imageLink: json['image'] as String,
+      tags: List<String>.from(json['tags']),
+      searchKeywords: List<String>.from(json['search_keywords']),
     );
   }
 
