@@ -1,10 +1,8 @@
-import 'package:app_ideas/external_links/external_links.dart';
-import 'package:app_ideas/idea_details/cubit/code_examples_cubit.dart';
-import 'package:app_ideas/idea_details/models/github_result.dart';
-import 'package:app_ideas/idea_details/repository/github_repository.dart';
-import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../external_links/external_links.dart';
+import '../../widgets/widgets.dart';
+import '../idea_details.dart';
 
 const double kExamplesRowHeight = 240.0;
 
@@ -40,14 +38,14 @@ class CodeExamplesList extends StatelessWidget {
         switch (state.status) {
           case CodeExamplesStatus.initial:
           case CodeExamplesStatus.loading:
-            return const _ExamplesLoading();
+            return const _Loading();
           case CodeExamplesStatus.success:
-            return _ExamplesPopulated(
+            return _Populated(
               results: state.examples,
               searchKeywords: searchKeywords,
             );
           case CodeExamplesStatus.failure:
-            return _ExampleError(
+            return _Error(
               searchKeywords: searchKeywords,
             );
         }
@@ -56,35 +54,30 @@ class CodeExamplesList extends StatelessWidget {
   }
 }
 
-class _ExamplesLoading extends StatelessWidget {
-  const _ExamplesLoading({Key? key}) : super(key: key);
+class _Loading extends StatelessWidget {
+  const _Loading({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
+    return const SliverToBoxAdapter(
       child: SizedBox(
         height: kExamplesRowHeight,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text('Fetching examples from GitHub'),
-              ),
-              Expanded(child: Center(child: CircularProgressIndicator())),
-            ],
-          ),
+        child: DialogCard(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Text('Fetching examples from GitHub'),
+            ),
+            Expanded(child: Center(child: CircularProgressIndicator())),
+          ],
         ),
       ),
     );
   }
 }
 
-class _ExamplesPopulated extends StatelessWidget {
-  const _ExamplesPopulated({
+class _Populated extends StatelessWidget {
+  const _Populated({
     Key? key,
     required this.results,
     required this.searchKeywords,
@@ -130,8 +123,8 @@ class _ExamplesPopulated extends StatelessWidget {
   }
 }
 
-class _ExampleError extends StatelessWidget {
-  const _ExampleError({
+class _Error extends StatelessWidget {
+  const _Error({
     Key? key,
     required this.searchKeywords,
   }) : super(key: key);

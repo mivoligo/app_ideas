@@ -1,8 +1,8 @@
-import 'package:app_ideas/ideas/repository/ideas_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../model/idea_model.dart';
+import '../models/models.dart';
+import '../repository/repositories.dart';
 
 part 'random_idea_state.dart';
 

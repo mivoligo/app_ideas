@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:app_ideas/ideas/model/idea_model.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/models.dart';
 
 class IdeasRepository {
   IdeasRepository({http.Client? httpClient})

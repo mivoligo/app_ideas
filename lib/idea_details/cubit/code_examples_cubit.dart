@@ -1,7 +1,8 @@
-import 'package:app_ideas/idea_details/models/github_result.dart';
-import 'package:app_ideas/idea_details/repository/github_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../models/models.dart';
+import '../repositories/repositories.dart';
 
 part 'code_examples_state.dart';
 

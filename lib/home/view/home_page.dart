@@ -1,4 +1,4 @@
-import 'package:app_ideas/about_app/about_app.page.dart';
+import 'package:app_ideas/about_app/view/about_app_page.dart';
 import 'package:app_ideas/ideas/ideas.dart';
 import 'package:app_ideas/ideas/view/random_idea_page.dart';
 import 'package:app_ideas/new_idea/new_idea.dart';

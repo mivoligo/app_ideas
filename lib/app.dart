@@ -1,8 +1,8 @@
-import 'package:app_ideas/ideas/repository/ideas_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'home/home.dart';
+import 'ideas/repository/repositories.dart';
 
 class App extends StatelessWidget {
   const App({Key? key, required IdeasRepository ideasRepository})

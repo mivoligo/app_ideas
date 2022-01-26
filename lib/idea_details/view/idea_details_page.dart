@@ -1,11 +1,12 @@
 import 'dart:ui';
 
-import 'package:app_ideas/external_links/external_links.dart';
-import 'package:app_ideas/idea_details/view/code_examples_view.dart';
-import 'package:app_ideas/ideas/model/idea_model.dart';
-import 'package:app_ideas/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import '../../external_links/external_links.dart';
+import '../../ideas/models/models.dart';
+import '../../widgets/widgets.dart';
+import '../idea_details.dart';
 
 class IdeaDetailsPage extends StatelessWidget {
   const IdeaDetailsPage({
