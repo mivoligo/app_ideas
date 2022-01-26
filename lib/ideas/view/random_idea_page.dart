@@ -52,9 +52,10 @@ class _Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return const DialogCard(
       children: [
-        Icon(
-          Icons.casino,
-          size: 80,
+        Expanded(
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
         Expanded(
           child: Padding(
