@@ -29,12 +29,10 @@ class RandomIdeaView extends StatelessWidget {
     return BlocConsumer<RandomIdeaCubit, RandomIdeaState>(
         builder: (context, state) {
       if (state.status == RandomIdeaStatus.loading) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const _Loading();
       }
       if (state.status == RandomIdeaStatus.failure) {
-        return _RandomIdeaError(
+        return _Error(
           onReloadTap: () => context.read<RandomIdeaCubit>().fetchRandomIdea(),
         );
       }
@@ -49,8 +47,41 @@ class RandomIdeaView extends StatelessWidget {
   }
 }
 
-class _RandomIdeaError extends StatelessWidget {
-  const _RandomIdeaError({
+class _Loading extends StatelessWidget {
+  const _Loading({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 48.0),
+        child: Card(
+          child: Column(
+            children: const [
+              SizedBox(height: 12),
+              Icon(
+                Icons.casino,
+                size: 80,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text(
+                    'Fetching random idea...',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Error extends StatelessWidget {
+  const _Error({
     Key? key,
     required this.onReloadTap,
   }) : super(key: key);
