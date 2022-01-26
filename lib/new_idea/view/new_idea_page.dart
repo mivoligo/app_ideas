@@ -17,18 +17,17 @@ class NewIdeaPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Center(
+              child: SingleChildScrollView(
                 child: Text(
-                  'Do you have an idea for an app?\n\n'
-                  ' Do you want to share it with others?\n\n'
-                  ' You can do that by reporting a new issue in this project'
-                  ' repositories on GitHub.\n\n If you\'re ready, just click'
+                  'Do you have an idea for an app? '
+                  'Do you want to share it with others?\n'
+                  'You can do that by reporting a new issue in this project'
+                  ' repository on GitHub.\nIf you\'re ready, just click'
                   ' the button below and you should land on the page where you'
                   ' can submit your idea.',
-                  textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyLarge
+                      .headlineSmall
                       ?.copyWith(color: const Color(0xFF949ED3)),
                 ),
               ),
