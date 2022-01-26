@@ -3,18 +3,13 @@ import 'dart:convert';
 import 'package:app_ideas/ideas/model/idea_model.dart';
 import 'package:http/http.dart' as http;
 
-abstract class IdeasRepository {
-  Future<List<Idea>> fetchIdeas();
-}
-
-class SimpleIdeaRepository implements IdeasRepository {
-  SimpleIdeaRepository({http.Client? httpClient})
+class IdeasRepository {
+  IdeasRepository({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
   static const _baseUrl = 'mivoligo.github.io';
   final http.Client _httpClient;
 
-  @override
   Future<List<Idea>> fetchIdeas() async {
     final ideasRequest = Uri.https(_baseUrl, 'app_ideas_page/ideas.json');
 
@@ -27,5 +22,12 @@ class SimpleIdeaRepository implements IdeasRepository {
     final bodyJson = jsonDecode(ideasResponse.body) as List;
 
     return bodyJson.map((e) => Idea.fromJson(e)).toList();
+  }
+
+  Future<Idea> fetchRandomIdea() async {
+    final ideas = await fetchIdeas();
+
+    ideas.shuffle();
+    return ideas.first;
   }
 }

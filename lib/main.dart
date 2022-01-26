@@ -5,6 +5,6 @@ import 'app.dart';
 
 void main() {
   runApp(
-    App(ideasRepository: SimpleIdeaRepository()),
+    App(ideasRepository: IdeasRepository()),
   );
 }

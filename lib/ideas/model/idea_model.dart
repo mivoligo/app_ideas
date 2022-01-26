@@ -5,6 +5,12 @@ class Idea {
     required this.attributes,
   });
 
+  const Idea.empty({
+    this.id = '',
+    this.title = '',
+    this.attributes = const Attributes.empty(),
+  });
+
   factory Idea.fromJson(Map<String, dynamic> json) {
     return Idea(
       id: json['id'] as String,
@@ -24,6 +30,13 @@ class Attributes {
     required this.imageLink,
     required this.tags,
     required this.searchKeywords,
+  });
+
+  const Attributes.empty({
+    this.summary = '',
+    this.imageLink = '',
+    this.tags = const [],
+    this.searchKeywords = const [],
   });
 
   factory Attributes.fromJson(Map<String, dynamic> json) {
