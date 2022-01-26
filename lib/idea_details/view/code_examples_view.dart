@@ -2,7 +2,7 @@ import 'package:app_ideas/external_links/external_links.dart';
 import 'package:app_ideas/idea_details/cubit/code_examples_cubit.dart';
 import 'package:app_ideas/idea_details/models/github_result.dart';
 import 'package:app_ideas/idea_details/repository/github_repository.dart';
-import 'package:app_ideas/widgets/clickable_card.dart';
+import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,11 +48,7 @@ class CodeExamplesList extends StatelessWidget {
             );
           case CodeExamplesStatus.failure:
             return _ExampleError(
-              onReloadTap: () => context
-                  .read<CodeExamplesCubit>()
-                  .fetchCodeExamples(searchKeywords: searchKeywords),
-              onGoToGithubTap: () =>
-                  launchMoreExamplesGithubLink(searchKeywords: searchKeywords),
+              searchKeywords: searchKeywords,
             );
         }
       },
@@ -137,59 +133,27 @@ class _ExamplesPopulated extends StatelessWidget {
 class _ExampleError extends StatelessWidget {
   const _ExampleError({
     Key? key,
-    required this.onReloadTap,
-    required this.onGoToGithubTap,
+    required this.searchKeywords,
   }) : super(key: key);
 
-  final VoidCallback onReloadTap;
-  final VoidCallback onGoToGithubTap;
+  final List<String> searchKeywords;
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
         height: kExamplesRowHeight,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 12),
-              const Icon(
-                Icons.cloud_off,
-                size: 80,
-              ),
-              const Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Text(
-                    'Something went wrong when fetching examples.\n'
-                    'Please check your internet connection and try again.',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton.icon(
-                      label: const Text('Reload'),
-                      icon: const Icon(Icons.refresh),
-                      onPressed: onReloadTap,
-                    ),
-                    ElevatedButton.icon(
-                      label: const Text('Open in browser'),
-                      icon: const Icon(Icons.launch),
-                      onPressed: onGoToGithubTap,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+        child: ErrorCard(
+          iconData: Icons.cloud_off,
+          iconSize: 32,
+          errorMessage: 'Something went wrong when fetching examples.\n'
+              'Please check your connection and try again.',
+          onReloadTap: () => context
+              .read<CodeExamplesCubit>()
+              .fetchCodeExamples(searchKeywords: searchKeywords),
+          optionalText: 'Open in browser',
+          onOptionalTap: () =>
+              launchMoreExamplesGithubLink(searchKeywords: searchKeywords),
         ),
       ),
     );
