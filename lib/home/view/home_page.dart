@@ -36,15 +36,10 @@ class _Header extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        const AppName(),
+        const SizedBox(height: 12.0),
         Text(
-          'App\nIdeas',
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        Text(
-          'Collection of ideas for your app portfolio',
+          'Collection of app ideas for your portfolio',
           style: Theme.of(context)
               .textTheme
               .headlineSmall

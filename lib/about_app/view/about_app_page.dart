@@ -16,19 +16,13 @@ class AboutAppPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'App Ideas',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
+            const AppName(),
             Text(
               'v 0.0.1',
               style: Theme.of(context)
                   .textTheme
-                  .bodyText2
-                  ?.copyWith(color: Colors.grey.shade600),
+                  .headlineSmall
+                  ?.copyWith(color: Colors.white60),
             ),
             const Spacer(),
             const ClickableCard(
