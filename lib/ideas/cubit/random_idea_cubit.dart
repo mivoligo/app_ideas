@@ -13,8 +13,10 @@ class RandomIdeaCubit extends Cubit<RandomIdeaState> {
 
   Future<void> fetchRandomIdea() async {
     emit(state.copyWith(status: RandomIdeaStatus.loading));
+
     try {
       final randomIdea = await _ideasRepository.fetchRandomIdea();
+      await Future.delayed(const Duration(milliseconds: 1000));
       emit(state.copyWith(status: RandomIdeaStatus.success, idea: randomIdea));
     } on Exception {
       emit(state.copyWith(status: RandomIdeaStatus.failure));

@@ -1,5 +1,6 @@
 import 'package:app_ideas/about_app/about_app.page.dart';
 import 'package:app_ideas/ideas/ideas.dart';
+import 'package:app_ideas/ideas/view/random_idea_page.dart';
 import 'package:app_ideas/new_idea/new_idea.dart';
 import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,9 @@ class _Navigation extends StatelessWidget {
               child: ClickableCard(
                 title: 'Random',
                 iconData: Icons.casino,
-                onTap: () {},
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const RandomIdeaPage(),
+                )),
               ),
             ),
           ],
