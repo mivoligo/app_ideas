@@ -1,5 +1,6 @@
-import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'dialog_card.dart';
 
 class ErrorCard extends StatelessWidget {
   const ErrorCard({

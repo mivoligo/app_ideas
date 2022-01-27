@@ -97,14 +97,7 @@ class _Populated extends StatelessWidget {
           itemBuilder: (context, index) {
             if (index < results.length) {
               final result = results[index];
-              return _CodeExampleCard(
-                owner: result.owner,
-                name: result.name,
-                summary: result.description,
-                language: result.language,
-                stars: result.stars,
-                onTap: () => launchExampleCodeGithubLink(result.projectUrl),
-              );
+              return _CodeExampleCard(result: result);
             } else {
               return Padding(
                 padding: const EdgeInsets.all(6.0),
@@ -153,24 +146,13 @@ class _Error extends StatelessWidget {
   }
 }
 
-// TODO JUST NEED RESULT
 class _CodeExampleCard extends StatelessWidget {
   const _CodeExampleCard({
     Key? key,
-    required this.owner,
-    required this.name,
-    this.summary,
-    required this.stars,
-    this.language,
-    required this.onTap,
+    required this.result,
   }) : super(key: key);
 
-  final Owner owner;
-  final String name;
-  final String? summary;
-  final int stars;
-  final String? language;
-  final VoidCallback onTap;
+  final GithubResult result;
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +169,7 @@ class _CodeExampleCard extends StatelessWidget {
           type: MaterialType.transparency,
           textStyle: const TextStyle(color: Color(0xFFBDBDBD)),
           child: InkWell(
-            onTap: onTap,
+            onTap: () => launchExampleCodeGithubLink(result.projectUrl),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -201,14 +183,14 @@ class _CodeExampleCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${owner.name}/',
+                              '${result.owner.name}/',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(color: const Color(0xFFBDBDBD)),
                             ),
                             Text(
-                              name,
+                              result.name,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge
@@ -221,16 +203,16 @@ class _CodeExampleCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       CircleAvatar(
-                        foregroundImage: NetworkImage(owner.avatarUrl),
+                        foregroundImage: NetworkImage(result.owner.avatarUrl),
                       ),
                     ],
                   ),
-                  summary != null
+                  result.description != null
                       ? Expanded(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4.0),
                             child: Text(
-                              summary!,
+                              result.description!,
                               overflow: TextOverflow.fade,
                             ),
                           ),
@@ -238,10 +220,10 @@ class _CodeExampleCard extends StatelessWidget {
                       : const Spacer(),
                   Row(
                     children: [
-                      language != null
+                      result.language != null
                           ? Expanded(
                               child: Text(
-                                language!,
+                                result.language!,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                               ),
@@ -252,7 +234,7 @@ class _CodeExampleCard extends StatelessWidget {
                         size: 16,
                         color: Color(0xFFBDBDBD),
                       ),
-                      Text('$stars'),
+                      Text('${result.stars}'),
                     ],
                   ),
                 ],
