@@ -153,6 +153,7 @@ class _Error extends StatelessWidget {
   }
 }
 
+// TODO JUST NEED RESULT
 class _CodeExampleCard extends StatelessWidget {
   const _CodeExampleCard({
     Key? key,
@@ -179,11 +180,12 @@ class _CodeExampleCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         width: 210,
         decoration: BoxDecoration(
-          color: Colors.grey,
+          color: const Color(0xFF3F0071),
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Material(
           type: MaterialType.transparency,
+          textStyle: const TextStyle(color: Color(0xFFBDBDBD)),
           child: InkWell(
             onTap: onTap,
             child: Padding(
@@ -200,14 +202,19 @@ class _CodeExampleCard extends StatelessWidget {
                           children: [
                             Text(
                               '${owner.name}/',
-                              style: Theme.of(context).textTheme.bodyMedium,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: const Color(0xFFBDBDBD)),
                             ),
                             Text(
                               name,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold),
+                                  ?.copyWith(
+                                      color: const Color(0xFFBDBDBD),
+                                      fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -241,7 +248,9 @@ class _CodeExampleCard extends StatelessWidget {
                             )
                           : const Spacer(),
                       const Icon(
-                        Icons.star,
+                        Icons.star_border,
+                        size: 16,
+                        color: Color(0xFFBDBDBD),
                       ),
                       Text('$stars'),
                     ],

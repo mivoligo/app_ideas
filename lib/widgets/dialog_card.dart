@@ -17,12 +17,16 @@ class DialogCard extends StatelessWidget {
           width: 600,
           height: 400,
           child: Card(
+            color: const Color(0xFF3F0071),
             margin: EdgeInsets.zero,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(12)),
             ),
-            child: Column(
-              children: children,
+            child: DefaultTextStyle(
+              style: const TextStyle(color: Color(0xFFBDBDBD)),
+              child: Column(
+                children: children,
+              ),
             ),
           ),
         ),

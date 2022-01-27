@@ -16,11 +16,11 @@ class PageBackground extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color(0xFF1B2234),
-            Color(0xFF131823),
+            Color(0xFF000000),
+            Color(0xFF150050),
           ],
           begin: Alignment.topCenter,
-          end: Alignment.bottomRight,
+          end: Alignment.bottomCenter,
         ),
       ),
       child: Scaffold(

@@ -5,6 +5,7 @@ class ErrorCard extends StatelessWidget {
   const ErrorCard({
     Key? key,
     this.iconData = Icons.cloud_off,
+    this.iconColor = const Color(0xFFBDBDBD),
     this.iconSize = 80,
     required this.errorMessage,
     required this.onReloadTap,
@@ -14,6 +15,7 @@ class ErrorCard extends StatelessWidget {
   }) : super(key: key);
 
   final IconData iconData;
+  final Color iconColor;
   final double iconSize;
   final String errorMessage;
   final VoidCallback? onReloadTap;
@@ -29,6 +31,7 @@ class ErrorCard extends StatelessWidget {
         Icon(
           iconData,
           size: iconSize,
+          color: iconColor,
         ),
         Expanded(
           child: Padding(

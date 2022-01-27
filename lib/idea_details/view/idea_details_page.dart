@@ -99,10 +99,7 @@ class _AnimatedDecoratedBox extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Theme.of(context).primaryColor.withOpacity(value)
-                ],
+                colors: [Colors.transparent, Colors.black.withOpacity(value)],
               ),
             ),
             child: child,

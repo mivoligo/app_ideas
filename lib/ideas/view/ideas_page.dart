@@ -121,7 +121,7 @@ class _IdeaCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
-          color: const Color(0xFF212A35),
+          color: const Color(0xFF3F0071),
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -172,7 +172,7 @@ class _IdeaCard extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
-                            ?.copyWith(color: Colors.grey.shade400),
+                            ?.copyWith(color: const Color(0xFFBDBDBD)),
                       ),
                     ],
                   ),

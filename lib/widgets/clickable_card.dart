@@ -5,7 +5,7 @@ class ClickableCard extends StatelessWidget {
     Key? key,
     required this.title,
     required this.iconData,
-    this.backgroundColorInt = 0xFF212A35,
+    this.backgroundColorInt = 0xFF3F0071,
     required this.onTap,
   }) : super(key: key);
 
@@ -33,7 +33,7 @@ class ClickableCard extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 12.0),
                 child: Icon(
                   iconData,
-                  color: const Color(0xFF949ED3),
+                  color: const Color(0xFFBDBDBD),
                   size: 36,
                 ),
               ),
@@ -45,7 +45,7 @@ class ClickableCard extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge
-                      ?.copyWith(color: Colors.grey.shade200),
+                      ?.copyWith(color: const Color(0xFFBDBDBD)),
                 ),
               ),
             ],

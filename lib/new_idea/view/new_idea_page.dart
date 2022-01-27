@@ -28,7 +28,7 @@ class NewIdeaPage extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .headlineSmall
-                      ?.copyWith(color: const Color(0xFF949ED3)),
+                      ?.copyWith(color: const Color(0xFFBDBDBD)),
                 ),
               ),
             ),
