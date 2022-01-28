@@ -46,23 +46,15 @@ class IdeaDetailsPage extends StatelessWidget {
                 idea.attributes.description,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyMedium
+                    .bodyText1
                     ?.copyWith(color: const Color(0xFFBDBDBD)),
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 12.0, top: 12.0),
-              child: Text(
-                'Code examples',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(color: const Color(0xFFBDBDBD)),
-              ),
-            ),
-          ),
+          if (idea.attributes.features.isNotEmpty)
+            const _TextHeader(label: 'Typical features'),
+          _Features(features: idea.attributes.features),
+          const _TextHeader(label: 'Code examples'),
           CodeExamplesView(searchKeywords: idea.attributes.searchKeywords),
           SliverToBoxAdapter(
             child: Padding(
@@ -133,5 +125,76 @@ class _AnimatedDecoratedBox extends StatelessWidget {
             child: child,
           );
         });
+  }
+}
+
+class _TextHeader extends StatelessWidget {
+  const _TextHeader({
+    Key? key,
+    required this.label,
+  }) : super(key: key);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 12.0,
+          top: 12.0,
+          right: 12.0,
+        ),
+        child: Text(
+          label,
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: const Color(0xFFBDBDBD)),
+        ),
+      ),
+    );
+  }
+}
+
+class _Features extends StatelessWidget {
+  const _Features({Key? key, required this.features}) : super(key: key);
+
+  final List<String> features;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        features
+            .map((feature) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 4.0,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.remove,
+                        color: Color(0xFFBDBDBD),
+                        size: 16,
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          feature,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1
+                              ?.copyWith(color: const Color(0xFFBDBDBD)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ))
+            .toList(),
+      ),
+    );
   }
 }

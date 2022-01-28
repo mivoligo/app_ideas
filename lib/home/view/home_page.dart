@@ -1,9 +1,9 @@
-import 'package:app_ideas/about_app/view/about_app_page.dart';
-import 'package:app_ideas/ideas/ideas.dart';
-import 'package:app_ideas/ideas/view/random_idea_page.dart';
-import 'package:app_ideas/new_idea/new_idea.dart';
 import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../../about_app/about_app.dart';
+import '../../ideas/ideas.dart';
+import '../../new_idea/new_idea.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
