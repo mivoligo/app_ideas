@@ -28,6 +28,7 @@ class Attributes {
   Attributes({
     required this.summary,
     required this.imageLink,
+    required this.description,
     required this.tags,
     required this.searchKeywords,
   });
@@ -35,6 +36,7 @@ class Attributes {
   const Attributes.empty({
     this.summary = '',
     this.imageLink = '',
+    this.description = '',
     this.tags = const [],
     this.searchKeywords = const [],
   });
@@ -43,6 +45,7 @@ class Attributes {
     return Attributes(
       summary: json['summary'] as String,
       imageLink: json['image'] as String,
+      description: json['description'] as String,
       tags: List<String>.from(json['tags']),
       searchKeywords: List<String>.from(json['search_keywords']),
     );
@@ -50,6 +53,7 @@ class Attributes {
 
   final String summary;
   final String imageLink;
+  final String description;
   final List<String> tags;
   final List<String> searchKeywords;
 }

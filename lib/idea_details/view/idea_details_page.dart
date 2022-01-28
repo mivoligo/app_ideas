@@ -41,10 +41,25 @@ class IdeaDetailsPage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(
+                idea.attributes.description,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: const Color(0xFFBDBDBD)),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
               padding: const EdgeInsets.only(left: 12.0, top: 12.0),
               child: Text(
                 'Code examples',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: const Color(0xFFBDBDBD)),
               ),
             ),
           ),
