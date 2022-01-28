@@ -124,65 +124,68 @@ class _IdeaCard extends StatelessWidget {
           color: const Color(0xFF3F0071),
         ),
         clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: Hero(
-                  tag: idea.id,
-                  child: CachedNetworkImage(
-                    imageUrl: idea.attributes.imageLink,
-                    placeholder: (context, url) => const Image(
-                      image: AssetImage('assets/images/terminal.jpg'),
-                    ),
-                    errorWidget: (context, url, error) => const Image(
-                      image: AssetImage('assets/images/terminal.jpg'),
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: Hero(
+                    tag: idea.id,
+                    child: CachedNetworkImage(
+                      imageUrl: idea.attributes.imageLink,
+                      placeholder: (context, url) => const Image(
+                        image: AssetImage('assets/images/terminal.jpg'),
+                      ),
+                      errorWidget: (context, url, error) => const Image(
+                        image: AssetImage('assets/images/terminal.jpg'),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Hero(
-                          tag: '${idea.id}text',
-                          child: Material(
-                            type: MaterialType.transparency,
-                            child: Text(
-                              idea.title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(color: const Color(0xFF949ED3)),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Hero(
+                            tag: '${idea.id}text',
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: Text(
+                                idea.title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(color: const Color(0xFF949ED3)),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Text(
-                        idea.attributes.summary,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(color: const Color(0xFFBDBDBD)),
-                      ),
-                    ],
+                        Text(
+                          idea.attributes.summary,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(color: const Color(0xFFBDBDBD)),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
+              ],
+            ),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => IdeaDetailsPage(idea: idea),
               ),
-            ],
-          ),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => IdeaDetailsPage(idea: idea),
             ),
           ),
         ),
