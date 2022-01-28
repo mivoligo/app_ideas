@@ -65,10 +65,18 @@ class IdeaDetailsPage extends StatelessWidget {
           ),
           CodeExamplesView(searchKeywords: idea.attributes.searchKeywords),
           SliverToBoxAdapter(
-            child: ClickableCard(
-              title: 'See UI ideas for this app',
-              iconData: Icons.image,
-              onTap: () => launchDribbbleSearchLink(idea.title),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 12.0,
+                right: 12.0,
+                bottom: 12.0,
+              ),
+              child: ClickableCard(
+                title: 'See UI ideas for a ${idea.title} app on Dribble',
+                iconData: Icons.image,
+                backgroundColorInt: 0xFF610094,
+                onTap: () => launchDribbbleSearchLink(idea.title),
+              ),
             ),
           ),
         ],
