@@ -27,8 +27,8 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
+          primarySwatch: Colors.blueGrey,
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF150050))),
       home: const HomePage(),
     );
   }
