@@ -46,7 +46,7 @@ class IdeaDetailsPage extends StatelessWidget {
                 idea.attributes.description,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText1
+                    .titleMedium
                     ?.copyWith(color: const Color(0xFFBDBDBD)),
               ),
             ),
@@ -63,11 +63,8 @@ class IdeaDetailsPage extends StatelessWidget {
                 right: 12.0,
                 bottom: 12.0,
               ),
-              child: ClickableCard(
-                title: 'See UI ideas for a ${idea.title} app on Dribble',
-                iconData: Icons.image,
-                backgroundColorInt: 0xFF610094,
-                onTap: () => launchDribbbleSearchLink(idea.title),
+              child: _DribleButton(
+                idea: idea,
               ),
             ),
           ),
@@ -149,7 +146,7 @@ class _TextHeader extends StatelessWidget {
           label,
           style: Theme.of(context)
               .textTheme
-              .headline6
+              .titleLarge
               ?.copyWith(color: const Color(0xFFBDBDBD)),
         ),
       ),
@@ -170,7 +167,7 @@ class _Features extends StatelessWidget {
             .map((feature) => Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16.0,
-                    vertical: 4.0,
+                    vertical: 8.0,
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,6 +191,61 @@ class _Features extends StatelessWidget {
                   ),
                 ))
             .toList(),
+      ),
+    );
+  }
+}
+
+class _DribleButton extends StatelessWidget {
+  const _DribleButton({Key? key, required this.idea}) : super(key: key);
+
+  final Idea idea;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: const BoxDecoration(
+        color: Color(0xFF610094),
+        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: () => launchDribbbleSearchLink(idea.title),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                    ),
+                    child: Image.asset(
+                      'assets/images/drible.jpg',
+                      width: 50,
+                    )),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      'See UI ideas for a ${idea.title} app on Dribble',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(color: const Color(0xFFBDBDBD)),
+                    ),
+                  ),
+                ),
+                const Icon(
+                  Icons.launch,
+                  color: Color(0xFFBDBDBD),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -103,7 +103,7 @@ class _Populated extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: ClickableCard(
                   title: 'More examples on GitHub',
-                  iconData: Icons.north_east,
+                  iconData: Icons.launch,
                   onTap: () => launchMoreExamplesGithubLink(
                       searchKeywords: searchKeywords),
                 ),
