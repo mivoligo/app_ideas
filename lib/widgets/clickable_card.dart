@@ -20,7 +20,7 @@ class ClickableCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: Color(backgroundColorInt),
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
       child: Material(
         type: MaterialType.transparency,

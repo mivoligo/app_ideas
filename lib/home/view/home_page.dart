@@ -64,6 +64,7 @@ class _Navigation extends StatelessWidget {
               child: ClickableCard(
                 title: 'Browse Ideas',
                 iconData: Icons.category,
+                backgroundColorInt: 0xFF610094,
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const IdeasPage(),
