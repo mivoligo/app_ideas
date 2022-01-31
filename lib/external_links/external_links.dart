@@ -1,4 +1,4 @@
-import 'package:app_ideas/utils/utils.dart';
+import '../utils/utils.dart';
 
 const githubLink = 'github.com';
 const githubSearchLink = 'search';

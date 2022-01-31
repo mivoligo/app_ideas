@@ -1,6 +1,6 @@
-import 'package:app_ideas/external_links/external_links.dart';
-import 'package:app_ideas/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import '../../external_links/external_links.dart';
+import '../../widgets/widgets.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:app_ideas/utils/links_helper.dart';
 import 'package:http/http.dart' as http;
 
+import '../../utils/utils.dart';
 import '../models/models.dart';
 
 class GithubRepository {
