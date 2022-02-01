@@ -26,7 +26,7 @@ Collection of app ideas for your programming portfolio
 - If you're familiar with Flutter, just grab the source code and play with the app.
 
 **Option 2**
-- If you have an Android device, download the app from the Play Store.
+- If you have an Android device, [download the app](https://play.google.com/store/apps/details?id=org.mivoligo.app_ideas) from the Play Store.
 
 
 ---
