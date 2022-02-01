@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class PageBackground extends StatelessWidget {
   const PageBackground({
     Key? key,
-    this.body,
+    required this.body,
     this.appBar,
   }) : super(key: key);
 
-  final Widget? body;
+  final Widget body;
   final PreferredSizeWidget? appBar;
 
   @override
@@ -25,7 +25,7 @@ class PageBackground extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: body,
+        body: SafeArea(child: body),
         appBar: appBar,
       ),
     );
