@@ -11,7 +11,7 @@
             android:exported="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
-            android:theme="@style/LaunchTheme"
+            android:theme="@style/Theme.App.Starting"
             android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
