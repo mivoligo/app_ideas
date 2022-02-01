@@ -203,46 +203,49 @@ class _DribleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(
-        color: Color(0xFF610094),
-        borderRadius: BorderRadius.all(Radius.circular(12.0)),
-      ),
-      child: Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-          onTap: () => launchDribbbleSearchLink(idea.title),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Row(
-              children: [
-                Container(
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                    ),
-                    child: Image.asset(
-                      'assets/images/drible.jpg',
-                      width: 50,
-                    )),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      'See UI ideas for a ${idea.title} app on Dribble',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(color: const Color(0xFFBDBDBD)),
+    return SafeArea(
+      top: false,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: const BoxDecoration(
+          color: Color(0xFF610094),
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+        ),
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: () => launchDribbbleSearchLink(idea.title),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                children: [
+                  Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                      ),
+                      child: Image.asset(
+                        'assets/images/drible.jpg',
+                        width: 50,
+                      )),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        'See UI ideas for a ${idea.title} app on Dribble',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge
+                            ?.copyWith(color: const Color(0xFFBDBDBD)),
+                      ),
                     ),
                   ),
-                ),
-                const Icon(
-                  Icons.launch,
-                  color: Color(0xFFBDBDBD),
-                ),
-              ],
+                  const Icon(
+                    Icons.launch,
+                    color: Color(0xFFBDBDBD),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
