@@ -6,10 +6,10 @@ import 'package:mocktail/mocktail.dart';
 class MockIdeasRepository extends Mock implements IdeasRepository {}
 
 void main() {
-  final mockIdeas = [
-    const Idea(id: '1', title: 'Idea 1', attributes: Attributes.empty()),
-    const Idea(id: '2', title: 'Idea 2', attributes: Attributes.empty()),
-    const Idea(id: '3', title: 'Idea 3', attributes: Attributes.empty()),
+  const mockIdeas = [
+    Idea(id: '1', title: 'Idea 1', attributes: Attributes.empty()),
+    Idea(id: '2', title: 'Idea 2', attributes: Attributes.empty()),
+    Idea(id: '3', title: 'Idea 3', attributes: Attributes.empty()),
   ];
 
   group('IdeasCubit test', () {
@@ -54,7 +54,7 @@ void main() {
       act: (cubit) => cubit.fetchIdeas(),
       expect: () => [
         const IdeasState(status: IdeasStatus.loading),
-        IdeasState(status: IdeasStatus.success, ideas: mockIdeas),
+        const IdeasState(status: IdeasStatus.success, ideas: mockIdeas),
       ],
     );
 
