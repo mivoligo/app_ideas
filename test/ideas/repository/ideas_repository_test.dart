@@ -71,7 +71,6 @@ void main() {
             .thenAnswer((_) async => mockResponse);
 
         final ideas = await ideasRepository.fetchIdeas();
-        // final body = jsonDecode(mockResponse.body) as List;
         expect(ideas, isA<List<Idea>>());
       });
     });
