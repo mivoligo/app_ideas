@@ -9,17 +9,17 @@ class GithubRepository {
   GithubRepository({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
-  static const githubApiUrl = 'api.github.com';
-  static const githubUrl = 'github.com';
-  static const searchPath = 'search';
-  static const searchReposPath = 'search/repositories';
+  static const _githubApiUrl = 'api.github.com';
+  static const _githubUrl = 'github.com';
+  static const _searchPath = 'search';
+  static const _searchReposPath = 'search/repositories';
   final http.Client _httpClient;
 
   Future<List<GithubResult>> fetchResults(List<String> searchKeywords) async {
     final query = searchKeywords.join(' ');
     final request = Uri.https(
-      githubApiUrl,
-      searchReposPath,
+      _githubApiUrl,
+      _searchReposPath,
       {'q': query},
     );
 
@@ -37,8 +37,8 @@ class GithubRepository {
   }
 
   Future<void> launchMoreResultsGithubLink(String query) async => openLink(
-        githubUrl,
-        searchPath,
+        _githubUrl,
+        _searchPath,
         queryParams: {'q': query},
       );
 }
