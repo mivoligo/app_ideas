@@ -95,5 +95,9 @@ void main() {
         ),
       ],
     );
+
+    tearDown(() {
+      codeExamplesCubit.close();
+    });
   });
 }

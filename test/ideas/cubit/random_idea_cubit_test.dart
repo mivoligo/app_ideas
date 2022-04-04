@@ -69,5 +69,9 @@ void main() {
         const RandomIdeaState(status: RandomIdeaStatus.failure),
       ],
     );
+
+    tearDown(() {
+      randomIdeaCubit.close();
+    });
   });
 }
